@@ -1,0 +1,15 @@
+---
+# Playbook to show verion on IOS
+
+- hosts: CSR_Routers
+
+  tasks:
+    - name: Show Version
+      ios_command:
+        commands: show version
+      register: version
+
+    - name: Save output to ~/afne/
+      copy:
+        content: "{{version.stdout[0]}}"
+        dest: "~/afne/{{inventory_hostname}}-version.txt"

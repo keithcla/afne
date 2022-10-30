@@ -1,0 +1,172 @@
+Building configuration...
+
+Current configuration : 1538 bytes
+!
+! Last configuration change at 12:40:48 UTC Fri Oct 28 2022
+!
+version 16.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+no process cpu autoprofile hog
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+
+ip domain name afne.local
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 98RF6X2WG7K
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+!
+username keith privilege 15 secret 5 $1$J6Ez$SMGRNfKdSAz34jBcCrgDn0
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+! 
+! 
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ ip address 192.168.1.220 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+!
+control-plane
+!
+ !
+ !
+ !
+ !
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line vty 0
+ login local
+ transport input ssh
+line vty 1
+ login local
+ length 0
+ transport input ssh
+line vty 2 4
+ login local
+ transport input ssh
+!
+ntp server 10.10.10.10
+!
+!
+!
+!
+!
+end
